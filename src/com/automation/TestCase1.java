@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-
 import generic.Config;
 
 public class TestCase1 {
@@ -36,7 +35,7 @@ public class TestCase1 {
 		
 		AccountPage ap = new AccountPage(driver);
 		
-		js.executeScript("window.scrollBy(0,400)");
+		js.executeScript("window.scrollBy(0,-900)");
 		System.out.println(ap.getUserName());
 		
 		if(ap.getUserName().equals("abc xyz")){
