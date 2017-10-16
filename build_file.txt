@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="testng-execution" name="AutomationPractice">
+	<property environment="env"/>
+	<property name="ECLIPSE_HOME" value="D:/eclipse_64/eclipse/"/>
+	<property name="classpath" value="."/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.8"/>
+	<property name="source" value="1.8"/>
+	<property name="appversion" value="1.0"/>
+	<property name="bin" value="Release Management/bin"/>
+	<property name="drivers" value="Release Management/bin/drivers"/>
+	<property name="builds" value="Release Management/builds"/>
+	<property name="includes" value="Release Management/includes"/>
+	<property name="basedir" value="." />
+	<property name="report-dir" value="${basedir}/Test-Report" />
+	<property name="testng-report-dir" value="${report-dir}/TestNGreport" />
+	<path id="TestNG.libraryclasspath">
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/testng.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/jcommander.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/bsh-2.0b4.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/snakeyaml.jar"/>
+	</path>
+	<taskdef name="testng" classname="org.testng.TestNGAntTask">
+		<classpath location="D:/eclipse_64/eclipse/plugins/org.testng.eclipse_6.11.0.201703011520/lib/testng.jar"/>
+	</taskdef>
+	<path id="AutomationPractice.classpath">
+		<path refid="TestNG.libraryclasspath"/>
+		<pathelement location="D:/F DRIVE/Java/Selenium/selenium-java-3.4.0/selenium-server-standalone-3.4.0.jar"/>
+	</path>
+	<path id="bin.classpath">
+		<pathelement location="${bin}"/>
+	</path>
+	<target name="init" depends="clean">
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${builds}"/>
+		<mkdir dir="${includes}"/>
+		<mkdir dir="${report-dir}"/>
+		<mkdir dir="${testng-report-dir}"/>
+		<mkdir dir="${drivers}"/>
+		<copy includeemptydirs="false" todir="${bin}">
+			<fileset dir="src">
+				<exclude name="**/*.launch"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete dir="${builds}"/>
+		<delete dir="${includes}"/>
+		<delete dir="${report-dir}"/>
+		<delete dir="${testng-report-dir}"/>
+		<delete dir="${drivers}"/>
+	</target>
+	<target depends="clean" name="cleanall"/>
+	<target depends="build-subprojects,build-project" name="build"/>
+	<target name="build-subprojects"/>
+	<target depends="init" name="build-project">
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${bin}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src"/>
+			<classpath refid="AutomationPractice.classpath"/>
+		</javac>
+	</target>
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler" depends="build">
+		<copy todir="${includes}">
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+		</copy>
+		<copy todir="${drivers}">
+			<fileset dir="${basedir}/drivers" includes="*.exe"/>
+		</copy>
+		<!--<unzip dest="Release Management/includes">
+			<patternset includes="jdtCompilerAdapter.jar"/>
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+		</unzip>-->
+	</target>
+	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+		<antcall target="init-eclipse-compiler"/>
+	</target>
+	<!--
+	<target name="jar" depends="build-eclipse-compiler">
+			<jar destfile="${builds}/AutomationPractice-${appversion}.jar" basedir="${bin}"/>
+	</target>
+	-->
+	<target name="testng-execution" depends="build-eclipse-compiler">
+		<testng classpathref="bin.classpath" outputDir="${testng.report.dir}" workingDir="${bin}" haltOnfailure="true">
+			<classpath refid="AutomationPractice.classpath"/>
+			<xmlfileset dir="${basedir}" includes="testng.xml"/>
+		</testng>
+	</target>
+</project>

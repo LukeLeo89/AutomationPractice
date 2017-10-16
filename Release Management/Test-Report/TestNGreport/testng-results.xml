@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[Test successfull!!!!!!]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="13053" started-at="2017-10-16T14:03:09Z" finished-at="2017-10-16T14:03:22Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="13053" started-at="2017-10-16T14:03:09Z" finished-at="2017-10-16T14:03:22Z">
+      <class name="com.automation.TestCase1">
+        <test-method status="PASS" signature="setBrowser()[pri:0, instance:com.automation.TestCase1@1ef7fe8e]" name="setBrowser" is-config="true" duration-ms="3423" started-at="2017-10-16T19:33:05Z" finished-at="2017-10-16T19:33:09Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setBrowser -->
+        <test-method status="PASS" signature="Login()[pri:0, instance:com.automation.TestCase1@1ef7fe8e]" name="Login" duration-ms="13044" started-at="2017-10-16T19:33:09Z" finished-at="2017-10-16T19:33:22Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Test successfull!!!!!!]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Login -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:com.automation.TestCase1@1ef7fe8e]" name="closeBrowser" is-config="true" duration-ms="61" started-at="2017-10-16T19:33:22Z" finished-at="2017-10-16T19:33:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- com.automation.TestCase1 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

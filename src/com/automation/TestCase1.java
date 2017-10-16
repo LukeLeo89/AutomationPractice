@@ -4,6 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Reporter;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import generic.Config;
@@ -45,5 +46,10 @@ public class TestCase1 {
 		}
 		
 		
-	}	
+	}
+	
+	@AfterSuite
+	public void closeBrowser(){
+		driver.close();
+	}
 }

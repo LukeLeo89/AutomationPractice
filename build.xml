@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="testng-execution" name="AutomationPractice">
+	<property environment="env"/>
+	<property name="ECLIPSE_HOME" value="D:/eclipse_64/eclipse/"/>
+	<property name="Workspace" value="C:/Users/Luke.Sam/Java Workspace"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="target" value="1.8"/>
+	<property name="source" value="1.8"/>
+	<property name="appversion" value="1.0"/>
+	<property name="release" value="Release Management"/>
+	<property name="bin" value="${release}/bin"/>
+	<property name="drivers" value="${release}/bin/drivers"/>
+	<property name="builds" value="${release}/builds"/>
+	<property name="includes" value="${release}/includes"/>
+	<property name="basedir" value="." />
+	<property name="report-dir" value="${basedir}/${release}/Test-Report" />
+	<property name="xslt-dir" value="${basedir}/${release}/XSLT-Report" />
+	<property name="testng-report-dir" value="${report-dir}/TestNGreport" />
+	
+	
+	<path id="TestNG.libraryclasspath">
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/testng.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/jcommander.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/bsh-2.0b4.jar"/>
+		<pathelement location="${ECLIPSE_HOME}plugins/org.testng.eclipse_6.11.0.201703011520/lib/snakeyaml.jar"/>
+	</path>
+	
+	
+	
+	<path id="XSLT.classpath">
+		<pathelement location="${Workspace}/Jars/XSLT/SaxonHE9-8-0-5J/saxon9he.jar"/>
+		<pathelement location="${Workspace}/Jars/XSLT/SaxonHE9-8-0-5J/saxon9-test.jar"/>
+		<pathelement location="${Workspace}/Jars/XSLT/SaxonHE9-8-0-5J/saxon9-xqj.jar"/>
+		
+	</path>
+	
+	
+	<path id="bin_classpath">
+		<pathelement location="${bin}"/>
+	</path>
+	
+	
+	<taskdef name="testng" classname="org.testng.TestNGAntTask">
+		<classpath location="D:/eclipse_64/eclipse/plugins/org.testng.eclipse_6.11.0.201703011520/lib/testng.jar"/>
+	</taskdef>
+	
+	
+	<path id="AutomationPractice_classpath">
+		<path refid="TestNG.libraryclasspath"/>
+		<pathelement location="D:/F DRIVE/Java/Selenium/selenium-java-3.4.0/selenium-server-standalone-3.4.0.jar"/>
+	</path>
+	
+	
+	<target name="clean" description="To clean/delete all the directories created earlier">
+		<delete dir="${bin}"/>
+		<delete dir="${builds}"/>
+		<delete dir="${includes}"/>
+		<delete dir="${report-dir}"/>
+		<delete dir="${testng-report-dir}"/>
+		<delete dir="${drivers}"/>
+		<delete dir="${xslt-dir}"/>
+	</target>
+	
+	<target name="init" description="Initialize the project - creating all the required directories" depends="clean">
+		<mkdir dir="${bin}"/>
+		<mkdir dir="${builds}"/>
+		<mkdir dir="${includes}"/>
+		<mkdir dir="${report-dir}"/>
+		<mkdir dir="${testng-report-dir}"/>
+		<mkdir dir="${drivers}"/>
+		<mkdir dir="${xslt-dir}"/>
+		<copy includeemptydirs="false" todir="${bin}">
+			<fileset dir="src">
+				<exclude name="**/*.launch"/>
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	
+		
+	
+	<target name="init-compiler" description="Copying all the required files for compiling before compile"  depends="init">
+			<copy todir="${includes}">
+				<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+			</copy>
+			<copy todir="${drivers}">
+				<fileset dir="${Workspace}/Jars/drivers" includes="*.exe"/>
+			</copy>
+	</target>
+	
+	
+		
+	<target name="build" description="Initialize the project - creating all the required directories" depends="init-compiler" >
+		<javac debug="true" debuglevel="${debuglevel}" destdir="${bin}" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src"/>
+			<classpath refid="AutomationPractice_classpath"/>
+		</javac>
+	</target>
+	
+	
+	
+	<target name="testng-execution" depends="build">
+		<testng classpathref="bin_classpath" outputDir="${testng-report-dir}" workingDir="${bin}" haltOnfailure="true">
+			<classpath refid="AutomationPractice_classpath"/>
+			<xmlfileset dir="${basedir}" includes="testng.xml"/>
+		</testng>
+	</target>
+	
+	
+	<!--
+	<xslt in="${basedir}/test-output/testng-results.xml" out="${xslt-dir}/index.html" style="${Workspace}/Jars/XSLT/SaxonHE9-8-0-5J/testng-results.xsl">
+		<param expression="${Workspace}/Jars/XSLT/SaxonHE9-8-0-5J/" name="testNgXslt.outputDir" />
+	    <param expression="true" name="testNgXslt.sortTestCaseLinks" />
+	    <param expression="FAIL,SKIP,PASS,CONF,BY_CLASS" name="testNgXslt.testDetailsFilter" />
+	    <param expression="true" name="testNgXslt.showRuntimeTotals" />
+		<classpath refid="XSLT.classpath" />
+	</xslt>
+	-->
+</project>
