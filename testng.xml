@@ -6,4 +6,4 @@
       <class name="com.automation.TestCase1"/>
     </classes>
   </test> <!-- Default test -->
-</suite> <!-- Default suite -->
+</suite> 

@@ -5,22 +5,26 @@
       <![CDATA[Test successfull!!!!!!]]>
     </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="20620" started-at="2017-10-16T07:59:22Z" finished-at="2017-10-16T07:59:43Z">
+  <suite name="Default suite" duration-ms="17799" started-at="2017-10-20T11:43:57Z" finished-at="2017-10-20T11:44:15Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="20620" started-at="2017-10-16T07:59:22Z" finished-at="2017-10-16T07:59:43Z">
+    <test name="Default test" duration-ms="17799" started-at="2017-10-20T11:43:57Z" finished-at="2017-10-20T11:44:15Z">
       <class name="com.automation.TestCase1">
-        <test-method status="PASS" signature="setBrowser()[pri:0, instance:com.automation.TestCase1@6d8a00e3]" name="setBrowser" is-config="true" duration-ms="3607" started-at="2017-10-16T13:29:19Z" finished-at="2017-10-16T13:29:22Z">
+        <test-method status="PASS" signature="setBrowser()[pri:0, instance:com.automation.TestCase1@32d992b2]" name="setBrowser" is-config="true" duration-ms="4138" started-at="2017-10-20T17:13:53Z" finished-at="2017-10-20T17:13:57Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setBrowser -->
-        <test-method status="PASS" signature="Login()[pri:0, instance:com.automation.TestCase1@6d8a00e3]" name="Login" duration-ms="20588" started-at="2017-10-16T13:29:23Z" finished-at="2017-10-16T13:29:43Z">
+        <test-method status="PASS" signature="Login()[pri:0, instance:com.automation.TestCase1@32d992b2]" name="Login" duration-ms="17765" started-at="2017-10-20T17:13:57Z" finished-at="2017-10-20T17:14:15Z">
           <reporter-output>
             <line>
               <![CDATA[Test successfull!!!!!!]]>
             </line>
           </reporter-output>
         </test-method> <!-- Login -->
+        <test-method status="PASS" signature="closeBrowser()[pri:0, instance:com.automation.TestCase1@32d992b2]" name="closeBrowser" is-config="true" duration-ms="88" started-at="2017-10-20T17:14:16Z" finished-at="2017-10-20T17:14:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
       </class> <!-- com.automation.TestCase1 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
